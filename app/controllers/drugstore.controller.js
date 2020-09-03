@@ -36,13 +36,28 @@ exports.getLocalsByFilter = async (req, res) => {
 			}
 		})
 		.then((data) => {
-			return data.data;
+			var values = data.data;
+			var response = [];
+			for (var i = 0; i < values.length; i++) {
+				// dto to fill json response list that fields required
+				var jsondto = {
+					nombre: values[i].local_nombre,
+					direccion: values[i].local_direccion,
+					telefono: values[i].local_telefono,
+					latitud: values[i].local_lat,
+					longitud: values[i].local_lng
+				};
+				// push dto to list
+				response.push(jsondto);
+			}
+			// return locals dto list
+			return response;
 		})
 		.catch((error) => {
 			return { message: 'error' };
 		});
 
-	//add filters from json body
+	//add filters from json body to apply on dto service return
 	const filteredData = locales.filter((local) => {
 		if (fk_comuna != null && local_nombre != null) {
 			return local.fk_comuna === fk_comuna && local.local_nombre === local_nombre;
@@ -59,5 +74,6 @@ exports.getLocalsByFilter = async (req, res) => {
 			}
 		}
 	});
+
 	res.json(filteredData);
 };

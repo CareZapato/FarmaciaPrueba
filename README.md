@@ -10,9 +10,9 @@
 
 // Body params (add with postman or Insonmia ):
 
-// * fk_region: number id of the region. (*This param can't be null*)
-// * fk_comuna: commune id that the local is. Can be null
-// * local_nombre_ name of the local. Can be null
+// fk_region: number id of the region. (*This param can't be null*)
+// fk_comuna: commune id that the local is. Can be null
+// local_nombre_ name of the local. Can be null
 
 // url: https://drugstoreacl.herokuapp.com/api/drugstores/getLocalsByFilter 
 
