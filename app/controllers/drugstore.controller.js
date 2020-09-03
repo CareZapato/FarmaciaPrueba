@@ -36,22 +36,7 @@ exports.getLocalsByFilter = async (req, res) => {
 			}
 		})
 		.then((data) => {
-			var values = data.data;
-			var response = [];
-			for (var i = 0; i < values.length; i++) {
-				// dto to fill json response list that fields required
-				var jsondto = {
-					nombre: values[i].local_nombre,
-					direccion: values[i].local_direccion,
-					telefono: values[i].local_telefono,
-					latitud: values[i].local_lat,
-					longitud: values[i].local_lng
-				};
-				// push dto to list
-				response.push(jsondto);
-			}
-			// return locals dto list
-			return response;
+			return data.data;
 		})
 		.catch((error) => {
 			return { message: 'error' };
@@ -63,7 +48,6 @@ exports.getLocalsByFilter = async (req, res) => {
 			return local.fk_comuna === fk_comuna && local.local_nombre === local_nombre;
 		} else {
 			if (fk_comuna != null) {
-				console.log({ fk_comuna, local: local.fk_comuna });
 				return local.fk_comuna === fk_comuna;
 			}
 			if (local_nombre != null) {
@@ -75,5 +59,22 @@ exports.getLocalsByFilter = async (req, res) => {
 		}
 	});
 
-	res.json(filteredData);
+	const values = filteredData;
+	var response = [];
+	console.log('total items: ', values.length);
+	for (var i = 0; i < values.length; i++) {
+		// dto to fill json response list that fields required
+		var jsondto = {
+			nombre: values[i].local_nombre,
+			direccion: values[i].local_direccion,
+			telefono: values[i].local_telefono,
+			latitud: values[i].local_lat,
+			longitud: values[i].local_lng
+		};
+		// push dto to list
+		response.push(jsondto);
+	}
+	// return locals dto list
+	console.log('send json');
+	res.json(response);
 };

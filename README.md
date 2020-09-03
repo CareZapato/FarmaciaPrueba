@@ -16,6 +16,10 @@
 
 // url: https://drugstoreacl.herokuapp.com/api/drugstores/getLocalsByFilter 
 
+// *HOW TO USE EXAMPLES* ####click url
+
+https://docs.google.com/presentation/d/1sBLjeZBlVI-2IIwh5DScbvjPXIFS5QkwPOF3ewEqflU/edit?usp=sharing 
+
 
 ###By Developer
 
